@@ -1,1 +1,1 @@
-export declare const squared: (n: number) => number;
+export * from "./design";

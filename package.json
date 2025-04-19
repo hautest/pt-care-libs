@@ -2,11 +2,17 @@
   "name": "pt-care-libs",
   "version": "1.0.0",
   "type": "module",
+  "sideEffects": false,
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+    "./design": {
+      "types": "./dist/design/index.d.ts",
+      "import": "./dist/design/index.js",
+      "require": "./dist/design/index.cjs"
+    },
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "import": "./dist/ui/index.js",
+      "require": "./dist/ui/index.cjs"
     }
   },
   "main": "./dist/index.cjs",
@@ -25,7 +31,12 @@
     "@biomejs/biome": "^1.9.4",
     "@rslib/core": "^0.6.5",
     "@types/node": "^22.8.1",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "@types/react": "~18.3.12"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "react": "18.3.1",
+    "react-native": "0.76.9"
+  }
 }
