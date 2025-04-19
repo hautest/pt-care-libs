@@ -1,104 +1,107 @@
 export const colors = {
   light: {
-    // Background colors
+    // 1) 배경(BACKGROUND): 단계별로 충분한 명도 차이(파란 계열 톤 업)
     background: {
-      primary: "#FFFFFF",
-      secondary: "#F7F7F7",
-      tertiary: "#EFEFEF",
+      primary: "#FFFFFF", // 페이지 전체 바탕
+      secondary: "#F3F7FB", // 섹션 구분용(살짝 블루)
+      tertiary: "#E0ECF3", // 카드·패널 배경
     },
-    // Surface colors (cards, modals, etc)
+
+    // 2) 표면(SURFACE): 모달·팝업 등
     surface: {
-      primary: "#FFFFFF",
-      secondary: "#F7F7F7",
-      tertiary: "#EFEFEF",
+      card: "#FFFFFF",
+      panel: "#F3F7FB",
+      modal: "#E0ECF3",
     },
-    // Text colors
+
+    // 3) 텍스트(TEXT): 배경 대비 충분히 높은 대비 유지
     text: {
-      primary: "#000000",
-      secondary: "#666666",
-      tertiary: "#757575",
-      inverse: "#FFFFFF",
+      primary: "#0A0F21", // 진한 다크(본문)
+      secondary: "#3F4A5B", // 보조 텍스트
+      tertiary: "#6B7280", // 설명·레이블
+      placeholder: "#9CA3AF", // 플레이스홀더
+      inverse: "#FFFFFF", // 어두운 배경 위
     },
-    // Brand colors
-    brand: {
-      primary: "#007AFF",
-      secondary: "#5856D6",
-    },
-    // Accent colors
-    accent: {
-      blue: "#007AFF",
-      green: "#34C759",
-      indigo: "#5856D6",
-      orange: "#FF9500",
-      pink: "#FF2D55",
-      purple: "#AF52DE",
-      red: "#FF3B30",
-      teal: "#5AC8FA",
-      yellow: "#FFCC00",
-    },
-    // Border colors
+
+    // 4) 경계(BORDER): 기본·연결·포커스
     border: {
-      primary: "#E5E5E5",
-      secondary: "#E0E0E0",
+      default: "#D1D5DB", // 기본 분리선
+      light: "#E5E7EB", // 얇은 구분선
+      focus: "#2563EB", // 포커스 아웃라인
     },
-    // Status colors
+
+    // 5) 브랜드(BRAND)
+    brand: {
+      primary: "#1E40AF", // 딥 블루
+      secondary: "#2563EB", // 라이트 블루
+    },
+
+    // 6) 액션(ACTION): 버튼·링크 등
+    action: {
+      primary: "#2563EB",
+      secondary: "#1E40AF",
+      disabled: "#CBD5E1",
+    },
+
+    // 7) 상태(STATUS)
     status: {
-      success: "#34C759",
-      warning: "#FFCC00",
-      error: "#FF3B30",
-      info: "#007AFF",
+      success: "#16A34A", // 그린
+      warning: "#F59E0B", // 옐로우
+      error: "#DC2626", // 레드
+      info: "#2563EB", // 블루
     },
   },
+
   dark: {
-    // Background colors
+    // 1) 배경
     background: {
-      primary: "#000000",
-      secondary: "#1C1C1E",
-      tertiary: "#2C2C2E",
+      primary: "#0F172A",
+      secondary: "#1E293B",
+      tertiary: "#293447",
     },
-    // Surface colors (cards, modals, etc)
+
+    // 2) 표면
     surface: {
-      primary: "#1C1C1E",
-      secondary: "#2C2C2E",
-      tertiary: "#3A3A3C",
+      card: "#1E293B",
+      panel: "#293447",
+      modal: "#2A3C50",
     },
-    // Text colors
+
+    // 3) 텍스트
     text: {
-      primary: "#FFFFFF",
-      secondary: "#EBEBF5",
-      tertiary: "#EBEBF599",
-      inverse: "#000000",
+      primary: "#F8FAFC",
+      secondary: "#E2E8F0",
+      tertiary: "#94A3B8",
+      placeholder: "#CBD5E1",
+      inverse: "#0F172A",
     },
-    // Brand colors
-    brand: {
-      primary: "#0A84FF",
-      secondary: "#5E5CE6",
-    },
-    // Accent colors
-    accent: {
-      blue: "#0A84FF",
-      green: "#30D158",
-      indigo: "#5E5CE6",
-      orange: "#FF9F0A",
-      pink: "#FF375F",
-      purple: "#BF5AF2",
-      red: "#FF453A",
-      teal: "#64D2FF",
-      yellow: "#FFD60A",
-    },
-    // Border colors
+
+    // 4) 경계
     border: {
-      primary: "#38383A",
-      secondary: "#2C2C2E",
+      default: "#334155",
+      light: "#475569",
+      focus: "#60A5FA",
     },
-    // Status colors
+
+    // 5) 브랜드
+    brand: {
+      primary: "#60A5FA",
+      secondary: "#818CF8",
+    },
+
+    // 6) 액션
+    action: {
+      primary: "#60A5FA",
+      secondary: "#818CF8",
+      disabled: "#475569",
+    },
+
+    // 7) 상태
     status: {
-      success: "#30D158",
-      warning: "#FFD60A",
-      error: "#FF453A",
-      info: "#0A84FF",
+      success: "#34D399",
+      warning: "#FACC15",
+      error: "#EF4444",
+      info: "#60A5FA",
     },
   },
 } as const;
-
-export type Colors = typeof colors;

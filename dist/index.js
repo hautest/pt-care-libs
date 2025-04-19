@@ -2,87 +2,79 @@ const colors = {
     light: {
         background: {
             primary: "#FFFFFF",
-            secondary: "#F7F7F7",
-            tertiary: "#EFEFEF"
+            secondary: "#F3F7FB",
+            tertiary: "#E0ECF3"
         },
         surface: {
-            primary: "#FFFFFF",
-            secondary: "#F7F7F7",
-            tertiary: "#EFEFEF"
+            card: "#FFFFFF",
+            panel: "#F3F7FB",
+            modal: "#E0ECF3"
         },
         text: {
-            primary: "#000000",
-            secondary: "#666666",
-            tertiary: "#757575",
+            primary: "#0A0F21",
+            secondary: "#3F4A5B",
+            tertiary: "#6B7280",
+            placeholder: "#9CA3AF",
             inverse: "#FFFFFF"
         },
-        brand: {
-            primary: "#007AFF",
-            secondary: "#5856D6"
-        },
-        accent: {
-            blue: "#007AFF",
-            green: "#34C759",
-            indigo: "#5856D6",
-            orange: "#FF9500",
-            pink: "#FF2D55",
-            purple: "#AF52DE",
-            red: "#FF3B30",
-            teal: "#5AC8FA",
-            yellow: "#FFCC00"
-        },
         border: {
-            primary: "#E5E5E5",
-            secondary: "#E0E0E0"
+            default: "#D1D5DB",
+            light: "#E5E7EB",
+            focus: "#2563EB"
+        },
+        brand: {
+            primary: "#1E40AF",
+            secondary: "#2563EB"
+        },
+        action: {
+            primary: "#2563EB",
+            secondary: "#1E40AF",
+            disabled: "#CBD5E1"
         },
         status: {
-            success: "#34C759",
-            warning: "#FFCC00",
-            error: "#FF3B30",
-            info: "#007AFF"
+            success: "#16A34A",
+            warning: "#F59E0B",
+            error: "#DC2626",
+            info: "#2563EB"
         }
     },
     dark: {
         background: {
-            primary: "#000000",
-            secondary: "#1C1C1E",
-            tertiary: "#2C2C2E"
+            primary: "#0F172A",
+            secondary: "#1E293B",
+            tertiary: "#293447"
         },
         surface: {
-            primary: "#1C1C1E",
-            secondary: "#2C2C2E",
-            tertiary: "#3A3A3C"
+            card: "#1E293B",
+            panel: "#293447",
+            modal: "#2A3C50"
         },
         text: {
-            primary: "#FFFFFF",
-            secondary: "#EBEBF5",
-            tertiary: "#EBEBF599",
-            inverse: "#000000"
-        },
-        brand: {
-            primary: "#0A84FF",
-            secondary: "#5E5CE6"
-        },
-        accent: {
-            blue: "#0A84FF",
-            green: "#30D158",
-            indigo: "#5E5CE6",
-            orange: "#FF9F0A",
-            pink: "#FF375F",
-            purple: "#BF5AF2",
-            red: "#FF453A",
-            teal: "#64D2FF",
-            yellow: "#FFD60A"
+            primary: "#F8FAFC",
+            secondary: "#E2E8F0",
+            tertiary: "#94A3B8",
+            placeholder: "#CBD5E1",
+            inverse: "#0F172A"
         },
         border: {
-            primary: "#38383A",
-            secondary: "#2C2C2E"
+            default: "#334155",
+            light: "#475569",
+            focus: "#60A5FA"
+        },
+        brand: {
+            primary: "#60A5FA",
+            secondary: "#818CF8"
+        },
+        action: {
+            primary: "#60A5FA",
+            secondary: "#818CF8",
+            disabled: "#475569"
         },
         status: {
-            success: "#30D158",
-            warning: "#FFD60A",
-            error: "#FF453A",
-            info: "#0A84FF"
+            success: "#34D399",
+            warning: "#FACC15",
+            error: "#EF4444",
+            info: "#60A5FA"
         }
     }
 };

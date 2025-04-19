@@ -2,88 +2,79 @@ export declare const colors: {
     readonly light: {
         readonly background: {
             readonly primary: "#FFFFFF";
-            readonly secondary: "#F7F7F7";
-            readonly tertiary: "#EFEFEF";
+            readonly secondary: "#F3F7FB";
+            readonly tertiary: "#E0ECF3";
         };
         readonly surface: {
-            readonly primary: "#FFFFFF";
-            readonly secondary: "#F7F7F7";
-            readonly tertiary: "#EFEFEF";
+            readonly card: "#FFFFFF";
+            readonly panel: "#F3F7FB";
+            readonly modal: "#E0ECF3";
         };
         readonly text: {
-            readonly primary: "#000000";
-            readonly secondary: "#666666";
-            readonly tertiary: "#757575";
+            readonly primary: "#0A0F21";
+            readonly secondary: "#3F4A5B";
+            readonly tertiary: "#6B7280";
+            readonly placeholder: "#9CA3AF";
             readonly inverse: "#FFFFFF";
         };
-        readonly brand: {
-            readonly primary: "#007AFF";
-            readonly secondary: "#5856D6";
-        };
-        readonly accent: {
-            readonly blue: "#007AFF";
-            readonly green: "#34C759";
-            readonly indigo: "#5856D6";
-            readonly orange: "#FF9500";
-            readonly pink: "#FF2D55";
-            readonly purple: "#AF52DE";
-            readonly red: "#FF3B30";
-            readonly teal: "#5AC8FA";
-            readonly yellow: "#FFCC00";
-        };
         readonly border: {
-            readonly primary: "#E5E5E5";
-            readonly secondary: "#E0E0E0";
+            readonly default: "#D1D5DB";
+            readonly light: "#E5E7EB";
+            readonly focus: "#2563EB";
+        };
+        readonly brand: {
+            readonly primary: "#1E40AF";
+            readonly secondary: "#2563EB";
+        };
+        readonly action: {
+            readonly primary: "#2563EB";
+            readonly secondary: "#1E40AF";
+            readonly disabled: "#CBD5E1";
         };
         readonly status: {
-            readonly success: "#34C759";
-            readonly warning: "#FFCC00";
-            readonly error: "#FF3B30";
-            readonly info: "#007AFF";
+            readonly success: "#16A34A";
+            readonly warning: "#F59E0B";
+            readonly error: "#DC2626";
+            readonly info: "#2563EB";
         };
     };
     readonly dark: {
         readonly background: {
-            readonly primary: "#000000";
-            readonly secondary: "#1C1C1E";
-            readonly tertiary: "#2C2C2E";
+            readonly primary: "#0F172A";
+            readonly secondary: "#1E293B";
+            readonly tertiary: "#293447";
         };
         readonly surface: {
-            readonly primary: "#1C1C1E";
-            readonly secondary: "#2C2C2E";
-            readonly tertiary: "#3A3A3C";
+            readonly card: "#1E293B";
+            readonly panel: "#293447";
+            readonly modal: "#2A3C50";
         };
         readonly text: {
-            readonly primary: "#FFFFFF";
-            readonly secondary: "#EBEBF5";
-            readonly tertiary: "#EBEBF599";
-            readonly inverse: "#000000";
-        };
-        readonly brand: {
-            readonly primary: "#0A84FF";
-            readonly secondary: "#5E5CE6";
-        };
-        readonly accent: {
-            readonly blue: "#0A84FF";
-            readonly green: "#30D158";
-            readonly indigo: "#5E5CE6";
-            readonly orange: "#FF9F0A";
-            readonly pink: "#FF375F";
-            readonly purple: "#BF5AF2";
-            readonly red: "#FF453A";
-            readonly teal: "#64D2FF";
-            readonly yellow: "#FFD60A";
+            readonly primary: "#F8FAFC";
+            readonly secondary: "#E2E8F0";
+            readonly tertiary: "#94A3B8";
+            readonly placeholder: "#CBD5E1";
+            readonly inverse: "#0F172A";
         };
         readonly border: {
-            readonly primary: "#38383A";
-            readonly secondary: "#2C2C2E";
+            readonly default: "#334155";
+            readonly light: "#475569";
+            readonly focus: "#60A5FA";
+        };
+        readonly brand: {
+            readonly primary: "#60A5FA";
+            readonly secondary: "#818CF8";
+        };
+        readonly action: {
+            readonly primary: "#60A5FA";
+            readonly secondary: "#818CF8";
+            readonly disabled: "#475569";
         };
         readonly status: {
-            readonly success: "#30D158";
-            readonly warning: "#FFD60A";
-            readonly error: "#FF453A";
-            readonly info: "#0A84FF";
+            readonly success: "#34D399";
+            readonly warning: "#FACC15";
+            readonly error: "#EF4444";
+            readonly info: "#60A5FA";
         };
     };
 };
-export type Colors = typeof colors;
