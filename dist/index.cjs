@@ -25,7 +25,9 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
     typo: ()=>typo,
-    colors: ()=>colors
+    colors: ()=>colors,
+    createStyle: ()=>createStyle,
+    useThemeStyle: ()=>useThemeStyle
 });
 const colors = {
     light: {
@@ -145,11 +147,25 @@ const typo = {
         wider: 0.8
     }
 };
+const external_react_native_namespaceObject = require("react-native");
+const createStyle = (styleCallback)=>styleCallback;
+const useThemeStyle = (styledCallback)=>{
+    const colorScheme = (0, external_react_native_namespaceObject.useColorScheme)();
+    const isDark = "dark" === colorScheme;
+    return styledCallback({
+        themeColor: isDark ? colors.dark : colors.light,
+        typo: typo
+    });
+};
 exports.colors = __webpack_exports__.colors;
+exports.createStyle = __webpack_exports__.createStyle;
 exports.typo = __webpack_exports__.typo;
+exports.useThemeStyle = __webpack_exports__.useThemeStyle;
 for(var __webpack_i__ in __webpack_exports__)if (-1 === [
     "colors",
-    "typo"
+    "createStyle",
+    "typo",
+    "useThemeStyle"
 ].indexOf(__webpack_i__)) exports[__webpack_i__] = __webpack_exports__[__webpack_i__];
 Object.defineProperty(exports, '__esModule', {
     value: true

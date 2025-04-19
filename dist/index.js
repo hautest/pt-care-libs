@@ -1,3 +1,4 @@
+import * as __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__ from "react-native";
 const colors = {
     light: {
         background: {
@@ -116,4 +117,13 @@ const typo = {
         wider: 0.8
     }
 };
-export { colors, typo };
+const createStyle = (styleCallback)=>styleCallback;
+const useThemeStyle = (styledCallback)=>{
+    const colorScheme = (0, __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.useColorScheme)();
+    const isDark = "dark" === colorScheme;
+    return styledCallback({
+        themeColor: isDark ? colors.dark : colors.light,
+        typo: typo
+    });
+};
+export { colors, createStyle, typo, useThemeStyle };
