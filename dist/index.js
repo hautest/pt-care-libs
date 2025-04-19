@@ -13,7 +13,7 @@ const colors = {
         text: {
             primary: "#000000",
             secondary: "#666666",
-            tertiary: "#999999",
+            tertiary: "#757575",
             inverse: "#FFFFFF"
         },
         brand: {
@@ -33,7 +33,7 @@ const colors = {
         },
         border: {
             primary: "#E5E5E5",
-            secondary: "#EFEFEF"
+            secondary: "#E0E0E0"
         },
         status: {
             success: "#34C759",

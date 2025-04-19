@@ -16,7 +16,7 @@ export const colors = {
     text: {
       primary: "#000000",
       secondary: "#666666",
-      tertiary: "#999999",
+      tertiary: "#757575",
       inverse: "#FFFFFF",
     },
     // Brand colors
@@ -39,7 +39,7 @@ export const colors = {
     // Border colors
     border: {
       primary: "#E5E5E5",
-      secondary: "#EFEFEF",
+      secondary: "#E0E0E0",
     },
     // Status colors
     status: {
@@ -100,3 +100,5 @@ export const colors = {
     },
   },
 } as const;
+
+export type Colors = typeof colors;

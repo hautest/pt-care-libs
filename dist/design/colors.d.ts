@@ -13,7 +13,7 @@ export declare const colors: {
         readonly text: {
             readonly primary: "#000000";
             readonly secondary: "#666666";
-            readonly tertiary: "#999999";
+            readonly tertiary: "#757575";
             readonly inverse: "#FFFFFF";
         };
         readonly brand: {
@@ -33,7 +33,7 @@ export declare const colors: {
         };
         readonly border: {
             readonly primary: "#E5E5E5";
-            readonly secondary: "#EFEFEF";
+            readonly secondary: "#E0E0E0";
         };
         readonly status: {
             readonly success: "#34C759";
@@ -86,3 +86,4 @@ export declare const colors: {
         };
     };
 };
+export type Colors = typeof colors;
