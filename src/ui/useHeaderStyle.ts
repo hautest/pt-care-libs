@@ -1,11 +1,14 @@
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { EdgeInsets } from "react-native-safe-area-context";
 import { createStyle, useThemeStyle } from "./createStyle";
 
 export const HEADER_HEIGHT = 56;
 export const HEADER_HORIZONTAL_PADDING = 16;
 
-export const useHeaderStyle = () => {
-  const insets = useSafeAreaInsets();
+interface UseHeaderStyleProps {
+  insets: EdgeInsets;
+}
+
+export const useHeaderStyle = ({ insets }: UseHeaderStyleProps) => {
   const styles = useThemeStyle(headerStyle);
 
   return {

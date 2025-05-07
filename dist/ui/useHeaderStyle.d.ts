@@ -1,6 +1,10 @@
+import { EdgeInsets } from "react-native-safe-area-context";
 export declare const HEADER_HEIGHT = 56;
 export declare const HEADER_HORIZONTAL_PADDING = 16;
-export declare const useHeaderStyle: () => {
+interface UseHeaderStyleProps {
+    insets: EdgeInsets;
+}
+export declare const useHeaderStyle: ({ insets }: UseHeaderStyleProps) => {
     headerStyle: ({
         backgroundColor: "#F3F7FB" | "#1E293B";
     } | {
@@ -13,3 +17,4 @@ export declare const useHeaderStyle: () => {
         borderTopWidth: number;
     };
 };
+export {};

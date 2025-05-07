@@ -160,11 +160,9 @@ const useThemeStyle = (styledCallback)=>{
         typo: typo_typo
     });
 };
-const external_react_native_safe_area_context_namespaceObject = require("react-native-safe-area-context");
 const HEADER_HEIGHT = 56;
 const HEADER_HORIZONTAL_PADDING = 16;
-const useHeaderStyle = ()=>{
-    const insets = (0, external_react_native_safe_area_context_namespaceObject.useSafeAreaInsets)();
+const useHeaderStyle = ({ insets })=>{
     const styles = useThemeStyle(headerStyle);
     return {
         headerStyle: [

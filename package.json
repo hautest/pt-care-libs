@@ -32,12 +32,12 @@
     "@rslib/core": "^0.6.5",
     "@types/node": "^22.8.1",
     "@types/react": "~18.3.12",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "react-native-safe-area-context": "^5.4.0"
   },
   "private": true,
   "dependencies": {
     "react": "18.3.1",
-    "react-native": "0.76.9",
-    "react-native-safe-area-context": "^5.4.0"
+    "react-native": "0.76.9"
   }
 }

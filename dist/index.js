@@ -1,5 +1,4 @@
 import * as __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__ from "react-native";
-import * as __WEBPACK_EXTERNAL_MODULE_react_native_safe_area_context_52320a87__ from "react-native-safe-area-context";
 const colors = {
     light: {
         background: {
@@ -129,8 +128,7 @@ const useThemeStyle = (styledCallback)=>{
 };
 const HEADER_HEIGHT = 56;
 const HEADER_HORIZONTAL_PADDING = 16;
-const useHeaderStyle = ()=>{
-    const insets = (0, __WEBPACK_EXTERNAL_MODULE_react_native_safe_area_context_52320a87__.useSafeAreaInsets)();
+const useHeaderStyle = ({ insets })=>{
     const styles = useThemeStyle(headerStyle);
     return {
         headerStyle: [
