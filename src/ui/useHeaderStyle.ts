@@ -27,6 +27,7 @@ const headerStyle = createStyle(({ themeColor, typo }) => {
     title: {
       fontSize: typo.sizes.bodyLarge,
       fontWeight: typo.weights.bold,
+      color: themeColor.text.primary,
     },
     tabBarStyle: {
       backgroundColor: themeColor.background.secondary,
