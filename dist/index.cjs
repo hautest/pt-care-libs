@@ -1,6 +1,15 @@
 "use strict";
 var __webpack_require__ = {};
 (()=>{
+    __webpack_require__.n = (module)=>{
+        var getter = module && module.__esModule ? ()=>module['default'] : ()=>module;
+        __webpack_require__.d(getter, {
+            a: getter
+        });
+        return getter;
+    };
+})();
+(()=>{
     __webpack_require__.d = (exports1, definition)=>{
         for(var key in definition)if (__webpack_require__.o(definition, key) && !__webpack_require__.o(exports1, key)) Object.defineProperty(exports1, key, {
             enumerable: true,
@@ -202,11 +211,13 @@ const useHeaderStyle_headerStyle = createStyle(({ themeColor, typo })=>({
             color: themeColor.action.disabled
         }
     }));
+const external_react_namespaceObject = require("react");
+var external_react_default = /*#__PURE__*/ __webpack_require__.n(external_react_namespaceObject);
 function Header({ leftNode, title, rightNode, insets }) {
     const { headerStyle, headerTitleStyle } = useHeaderStyle({
         insets
     });
-    return /*#__PURE__*/ React.createElement(external_react_native_namespaceObject.View, {
+    return /*#__PURE__*/ external_react_default().createElement(external_react_native_namespaceObject.View, {
         style: [
             headerStyle,
             Header_styles.header,
@@ -214,11 +225,11 @@ function Header({ leftNode, title, rightNode, insets }) {
                 paddingTop: insets.top
             }
         ]
-    }, /*#__PURE__*/ React.createElement(external_react_native_namespaceObject.View, {
+    }, /*#__PURE__*/ external_react_default().createElement(external_react_native_namespaceObject.View, {
         style: Header_styles.flex1
-    }, leftNode), /*#__PURE__*/ React.createElement(external_react_native_namespaceObject.Text, {
+    }, leftNode), /*#__PURE__*/ external_react_default().createElement(external_react_native_namespaceObject.Text, {
         style: headerTitleStyle
-    }, title), /*#__PURE__*/ React.createElement(external_react_native_namespaceObject.View, {
+    }, title), /*#__PURE__*/ external_react_default().createElement(external_react_native_namespaceObject.View, {
         style: Header_styles.flex1
     }, rightNode));
 }

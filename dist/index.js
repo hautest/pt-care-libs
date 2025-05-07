@@ -1,4 +1,5 @@
 import * as __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__ from "react-native";
+import * as __WEBPACK_EXTERNAL_MODULE_react__ from "react";
 const colors = {
     basic: {
         black: "#000000",
@@ -171,7 +172,7 @@ function Header({ leftNode, title, rightNode, insets }) {
     const { headerStyle, headerTitleStyle } = useHeaderStyle({
         insets
     });
-    return /*#__PURE__*/ React.createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.View, {
+    return /*#__PURE__*/ __WEBPACK_EXTERNAL_MODULE_react__["default"].createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.View, {
         style: [
             headerStyle,
             Header_styles.header,
@@ -179,11 +180,11 @@ function Header({ leftNode, title, rightNode, insets }) {
                 paddingTop: insets.top
             }
         ]
-    }, /*#__PURE__*/ React.createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.View, {
+    }, /*#__PURE__*/ __WEBPACK_EXTERNAL_MODULE_react__["default"].createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.View, {
         style: Header_styles.flex1
-    }, leftNode), /*#__PURE__*/ React.createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.Text, {
+    }, leftNode), /*#__PURE__*/ __WEBPACK_EXTERNAL_MODULE_react__["default"].createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.Text, {
         style: headerTitleStyle
-    }, title), /*#__PURE__*/ React.createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.View, {
+    }, title), /*#__PURE__*/ __WEBPACK_EXTERNAL_MODULE_react__["default"].createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.View, {
         style: Header_styles.flex1
     }, rightNode));
 }

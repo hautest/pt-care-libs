@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { EdgeInsets } from "react-native-safe-area-context";
 import { useHeaderStyle } from "./useHeaderStyle";
 import { StyleSheet, Text, View } from "react-native";
