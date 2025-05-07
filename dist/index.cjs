@@ -24,10 +24,13 @@ var __webpack_require__ = {};
 var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
-    typo: ()=>typo,
+    typo: ()=>typo_typo,
+    useThemeStyle: ()=>useThemeStyle,
     colors: ()=>colors,
+    HEADER_HORIZONTAL_PADDING: ()=>HEADER_HORIZONTAL_PADDING,
+    HEADER_HEIGHT: ()=>HEADER_HEIGHT,
     createStyle: ()=>createStyle,
-    useThemeStyle: ()=>useThemeStyle
+    useHeaderStyle: ()=>useHeaderStyle
 });
 const colors = {
     light: {
@@ -109,7 +112,7 @@ const colors = {
         }
     }
 };
-const typo = {
+const typo_typo = {
     sizes: {
         display1: 48,
         display2: 40,
@@ -154,17 +157,47 @@ const useThemeStyle = (styledCallback)=>{
     const isDark = "dark" === colorScheme;
     return styledCallback({
         themeColor: isDark ? colors.dark : colors.light,
-        typo: typo
+        typo: typo_typo
     });
 };
+const external_react_native_safe_area_context_namespaceObject = require("react-native-safe-area-context");
+const HEADER_HEIGHT = 56;
+const HEADER_HORIZONTAL_PADDING = 16;
+const useHeaderStyle = ()=>{
+    const insets = (0, external_react_native_safe_area_context_namespaceObject.useSafeAreaInsets)();
+    const styles = useThemeStyle(headerStyle);
+    return {
+        headerStyle: [
+            styles.container,
+            {
+                height: insets.top + HEADER_HEIGHT
+            }
+        ]
+    };
+};
+const headerStyle = createStyle(({ themeColor, typo })=>({
+        container: {
+            backgroundColor: themeColor.background.secondary
+        },
+        title: {
+            fontSize: typo.sizes.bodyLarge,
+            fontWeight: typo.weights.bold
+        }
+    }));
+exports.HEADER_HEIGHT = __webpack_exports__.HEADER_HEIGHT;
+exports.HEADER_HORIZONTAL_PADDING = __webpack_exports__.HEADER_HORIZONTAL_PADDING;
 exports.colors = __webpack_exports__.colors;
 exports.createStyle = __webpack_exports__.createStyle;
 exports.typo = __webpack_exports__.typo;
+exports.useHeaderStyle = __webpack_exports__.useHeaderStyle;
 exports.useThemeStyle = __webpack_exports__.useThemeStyle;
 for(var __webpack_i__ in __webpack_exports__)if (-1 === [
+    "HEADER_HEIGHT",
+    "HEADER_HORIZONTAL_PADDING",
     "colors",
     "createStyle",
     "typo",
+    "useHeaderStyle",
     "useThemeStyle"
 ].indexOf(__webpack_i__)) exports[__webpack_i__] = __webpack_exports__[__webpack_i__];
 Object.defineProperty(exports, '__esModule', {

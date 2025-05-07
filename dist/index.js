@@ -1,4 +1,5 @@
 import * as __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__ from "react-native";
+import * as __WEBPACK_EXTERNAL_MODULE_react_native_safe_area_context_52320a87__ from "react-native-safe-area-context";
 const colors = {
     light: {
         background: {
@@ -79,7 +80,7 @@ const colors = {
         }
     }
 };
-const typo = {
+const typo_typo = {
     sizes: {
         display1: 48,
         display2: 40,
@@ -123,7 +124,30 @@ const useThemeStyle = (styledCallback)=>{
     const isDark = "dark" === colorScheme;
     return styledCallback({
         themeColor: isDark ? colors.dark : colors.light,
-        typo: typo
+        typo: typo_typo
     });
 };
-export { colors, createStyle, typo, useThemeStyle };
+const HEADER_HEIGHT = 56;
+const HEADER_HORIZONTAL_PADDING = 16;
+const useHeaderStyle = ()=>{
+    const insets = (0, __WEBPACK_EXTERNAL_MODULE_react_native_safe_area_context_52320a87__.useSafeAreaInsets)();
+    const styles = useThemeStyle(headerStyle);
+    return {
+        headerStyle: [
+            styles.container,
+            {
+                height: insets.top + HEADER_HEIGHT
+            }
+        ]
+    };
+};
+const headerStyle = createStyle(({ themeColor, typo })=>({
+        container: {
+            backgroundColor: themeColor.background.secondary
+        },
+        title: {
+            fontSize: typo.sizes.bodyLarge,
+            fontWeight: typo.weights.bold
+        }
+    }));
+export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, colors, createStyle, typo_typo as typo, useHeaderStyle, useThemeStyle };
