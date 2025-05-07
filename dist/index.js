@@ -133,7 +133,7 @@ const useThemeStyle = (styledCallback)=>{
 const HEADER_HEIGHT = 56;
 const HEADER_HORIZONTAL_PADDING = 16;
 const useHeaderStyle = ({ insets })=>{
-    const styles = useThemeStyle(headerStyle);
+    const styles = useThemeStyle(useHeaderStyle_headerStyle);
     return {
         headerStyle: [
             styles.container,
@@ -147,7 +147,7 @@ const useHeaderStyle = ({ insets })=>{
         headerTitleStyle: styles.title
     };
 };
-const headerStyle = createStyle(({ themeColor, typo })=>({
+const useHeaderStyle_headerStyle = createStyle(({ themeColor, typo })=>({
         container: {
             backgroundColor: themeColor.background.secondary
         },
@@ -167,4 +167,34 @@ const headerStyle = createStyle(({ themeColor, typo })=>({
             color: themeColor.action.disabled
         }
     }));
-export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, colors, createStyle, typo_typo as typo, useHeaderStyle, useThemeStyle };
+function Header({ leftNode, title, rightNode, insets }) {
+    const { headerStyle, headerTitleStyle } = useHeaderStyle({
+        insets
+    });
+    return /*#__PURE__*/ React.createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.View, {
+        style: [
+            headerStyle,
+            Header_styles.header,
+            {
+                paddingTop: insets.top
+            }
+        ]
+    }, /*#__PURE__*/ React.createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.View, {
+        style: Header_styles.flex1
+    }, leftNode), /*#__PURE__*/ React.createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.Text, {
+        style: headerTitleStyle
+    }, title), /*#__PURE__*/ React.createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.View, {
+        style: Header_styles.flex1
+    }, rightNode));
+}
+const Header_styles = __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.StyleSheet.create({
+    flex1: {
+        flex: 1
+    },
+    header: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingHorizontal: 16
+    }
+});
+export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, Header, colors, createStyle, typo_typo as typo, useHeaderStyle, useThemeStyle };

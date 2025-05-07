@@ -25,12 +25,13 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
     typo: ()=>typo_typo,
-    useThemeStyle: ()=>useThemeStyle,
+    Header: ()=>Header,
     colors: ()=>colors,
-    HEADER_HORIZONTAL_PADDING: ()=>HEADER_HORIZONTAL_PADDING,
     HEADER_HEIGHT: ()=>HEADER_HEIGHT,
+    useHeaderStyle: ()=>useHeaderStyle,
+    HEADER_HORIZONTAL_PADDING: ()=>HEADER_HORIZONTAL_PADDING,
     createStyle: ()=>createStyle,
-    useHeaderStyle: ()=>useHeaderStyle
+    useThemeStyle: ()=>useThemeStyle
 });
 const colors = {
     basic: {
@@ -167,7 +168,7 @@ const useThemeStyle = (styledCallback)=>{
 const HEADER_HEIGHT = 56;
 const HEADER_HORIZONTAL_PADDING = 16;
 const useHeaderStyle = ({ insets })=>{
-    const styles = useThemeStyle(headerStyle);
+    const styles = useThemeStyle(useHeaderStyle_headerStyle);
     return {
         headerStyle: [
             styles.container,
@@ -181,7 +182,7 @@ const useHeaderStyle = ({ insets })=>{
         headerTitleStyle: styles.title
     };
 };
-const headerStyle = createStyle(({ themeColor, typo })=>({
+const useHeaderStyle_headerStyle = createStyle(({ themeColor, typo })=>({
         container: {
             backgroundColor: themeColor.background.secondary
         },
@@ -201,8 +202,39 @@ const headerStyle = createStyle(({ themeColor, typo })=>({
             color: themeColor.action.disabled
         }
     }));
+function Header({ leftNode, title, rightNode, insets }) {
+    const { headerStyle, headerTitleStyle } = useHeaderStyle({
+        insets
+    });
+    return /*#__PURE__*/ React.createElement(external_react_native_namespaceObject.View, {
+        style: [
+            headerStyle,
+            Header_styles.header,
+            {
+                paddingTop: insets.top
+            }
+        ]
+    }, /*#__PURE__*/ React.createElement(external_react_native_namespaceObject.View, {
+        style: Header_styles.flex1
+    }, leftNode), /*#__PURE__*/ React.createElement(external_react_native_namespaceObject.Text, {
+        style: headerTitleStyle
+    }, title), /*#__PURE__*/ React.createElement(external_react_native_namespaceObject.View, {
+        style: Header_styles.flex1
+    }, rightNode));
+}
+const Header_styles = external_react_native_namespaceObject.StyleSheet.create({
+    flex1: {
+        flex: 1
+    },
+    header: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingHorizontal: 16
+    }
+});
 exports.HEADER_HEIGHT = __webpack_exports__.HEADER_HEIGHT;
 exports.HEADER_HORIZONTAL_PADDING = __webpack_exports__.HEADER_HORIZONTAL_PADDING;
+exports.Header = __webpack_exports__.Header;
 exports.colors = __webpack_exports__.colors;
 exports.createStyle = __webpack_exports__.createStyle;
 exports.typo = __webpack_exports__.typo;
@@ -211,6 +243,7 @@ exports.useThemeStyle = __webpack_exports__.useThemeStyle;
 for(var __webpack_i__ in __webpack_exports__)if (-1 === [
     "HEADER_HEIGHT",
     "HEADER_HORIZONTAL_PADDING",
+    "Header",
     "colors",
     "createStyle",
     "typo",
