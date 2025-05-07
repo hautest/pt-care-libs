@@ -143,7 +143,8 @@ const useHeaderStyle = ({ insets })=>{
         ],
         tabBarActiveTintColor: styles.tabBarActiveTintColor.color,
         tabBarInactiveTintColor: styles.tabBarInactiveTintColor.color,
-        tabBarStyle: styles.tabBarStyle
+        tabBarStyle: styles.tabBarStyle,
+        headerTitleStyle: styles.title
     };
 };
 const headerStyle = createStyle(({ themeColor, typo })=>({

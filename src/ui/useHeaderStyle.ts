@@ -16,6 +16,7 @@ export const useHeaderStyle = ({ insets }: UseHeaderStyleProps) => {
     tabBarActiveTintColor: styles.tabBarActiveTintColor.color,
     tabBarInactiveTintColor: styles.tabBarInactiveTintColor.color,
     tabBarStyle: styles.tabBarStyle,
+    headerTitleStyle: styles.title,
   };
 };
 

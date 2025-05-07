@@ -16,5 +16,10 @@ export declare const useHeaderStyle: ({ insets }: UseHeaderStyleProps) => {
         backgroundColor: "#F3F7FB" | "#1E293B";
         borderTopWidth: number;
     };
+    headerTitleStyle: {
+        fontSize: 18;
+        fontWeight: "700";
+        color: "#0A0F21" | "#F8FAFC";
+    };
 };
 export {};
