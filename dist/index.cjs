@@ -33,6 +33,10 @@ __webpack_require__.d(__webpack_exports__, {
     useHeaderStyle: ()=>useHeaderStyle
 });
 const colors = {
+    basic: {
+        black: "#000000",
+        white: "#FFFFFF"
+    },
     light: {
         background: {
             primary: "#FFFFFF",

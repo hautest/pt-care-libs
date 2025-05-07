@@ -1,5 +1,9 @@
 import * as __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__ from "react-native";
 const colors = {
+    basic: {
+        black: "#000000",
+        white: "#FFFFFF"
+    },
     light: {
         background: {
             primary: "#FFFFFF",

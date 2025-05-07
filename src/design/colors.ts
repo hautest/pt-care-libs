@@ -1,4 +1,8 @@
 export const colors = {
+  basic: {
+    black: "#000000",
+    white: "#FFFFFF",
+  },
   light: {
     // 1) 배경(BACKGROUND): 단계별로 충분한 명도 차이(파란 계열 톤 업)
     background: {

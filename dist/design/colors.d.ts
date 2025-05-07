@@ -1,4 +1,8 @@
 export declare const colors: {
+    readonly basic: {
+        readonly black: "#000000";
+        readonly white: "#FFFFFF";
+    };
     readonly light: {
         readonly background: {
             readonly primary: "#FFFFFF";
