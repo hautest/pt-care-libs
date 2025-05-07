@@ -10,6 +10,9 @@ export const useHeaderStyle = () => {
 
   return {
     headerStyle: [styles.container, { height: insets.top + HEADER_HEIGHT }],
+    tabBarActiveTintColor: styles.tabBarActiveTintColor.color,
+    tabBarInactiveTintColor: styles.tabBarInactiveTintColor.color,
+    tabBarStyle: styles.tabBarStyle,
   };
 };
 
@@ -22,5 +25,11 @@ const headerStyle = createStyle(({ themeColor, typo }) => {
       fontSize: typo.sizes.bodyLarge,
       fontWeight: typo.weights.bold,
     },
+    tabBarStyle: {
+      backgroundColor: themeColor.background.secondary,
+      borderTopWidth: 0,
+    },
+    tabBarActiveTintColor: { color: themeColor.brand.primary },
+    tabBarInactiveTintColor: { color: themeColor.action.disabled },
   };
 });
