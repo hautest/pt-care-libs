@@ -138,7 +138,10 @@ const useHeaderStyle = ()=>{
             {
                 height: insets.top + HEADER_HEIGHT
             }
-        ]
+        ],
+        tabBarActiveTintColor: styles.tabBarActiveTintColor.color,
+        tabBarInactiveTintColor: styles.tabBarInactiveTintColor.color,
+        tabBarStyle: styles.tabBarStyle
     };
 };
 const headerStyle = createStyle(({ themeColor, typo })=>({
@@ -148,6 +151,16 @@ const headerStyle = createStyle(({ themeColor, typo })=>({
         title: {
             fontSize: typo.sizes.bodyLarge,
             fontWeight: typo.weights.bold
+        },
+        tabBarStyle: {
+            backgroundColor: themeColor.background.secondary,
+            borderTopWidth: 0
+        },
+        tabBarActiveTintColor: {
+            color: themeColor.brand.primary
+        },
+        tabBarInactiveTintColor: {
+            color: themeColor.action.disabled
         }
     }));
 export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, colors, createStyle, typo_typo as typo, useHeaderStyle, useThemeStyle };

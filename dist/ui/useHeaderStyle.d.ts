@@ -6,4 +6,10 @@ export declare const useHeaderStyle: () => {
     } | {
         height: number;
     })[];
+    tabBarActiveTintColor: "#1E40AF" | "#60A5FA";
+    tabBarInactiveTintColor: "#CBD5E1" | "#475569";
+    tabBarStyle: {
+        backgroundColor: "#F3F7FB" | "#1E293B";
+        borderTopWidth: number;
+    };
 };
