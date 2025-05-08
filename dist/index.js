@@ -122,6 +122,10 @@ const typo_typo = {
         wider: 0.8
     }
 };
+const useThemeColor = ()=>{
+    const colorScheme = (0, __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.useColorScheme)();
+    return colors["dark" === colorScheme ? "dark" : "light"];
+};
 const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{
     const colorScheme = (0, __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.useColorScheme)();
@@ -198,4 +202,30 @@ const Header_styles = __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.StyleShe
         paddingHorizontal: 16
     }
 });
-export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, Header, colors, createStyle, typo_typo as typo, useHeaderStyle, useThemeStyle };
+function RadioButton({ children, checked, onCheckChange }) {
+    const styles = useThemeStyle(themedStyles);
+    const themeColor = useThemeColor();
+    return /*#__PURE__*/ __WEBPACK_EXTERNAL_MODULE_react__["default"].createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.TouchableOpacity, {
+        style: [
+            styles.block,
+            {
+                backgroundColor: checked ? themeColor.action.primary : themeColor.action.disabled
+            }
+        ],
+        activeOpacity: 0.3,
+        accessibilityRole: "radio",
+        accessibilityState: {
+            selected: checked
+        },
+        onPress: ()=>onCheckChange(!checked)
+    }, children);
+}
+const themedStyles = createStyle(({ themeColor })=>({
+        block: {
+            padding: 32,
+            borderRadius: 16,
+            borderWidth: 1,
+            borderColor: themeColor.border.default
+        }
+    }));
+export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, Header, RadioButton, colors, createStyle, typo_typo as typo, useHeaderStyle, useThemeColor, useThemeStyle };

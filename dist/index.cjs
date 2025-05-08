@@ -35,10 +35,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
     typo: ()=>typo_typo,
     Header: ()=>Header,
+    RadioButton: ()=>RadioButton,
     colors: ()=>colors,
     HEADER_HEIGHT: ()=>HEADER_HEIGHT,
     useHeaderStyle: ()=>useHeaderStyle,
     HEADER_HORIZONTAL_PADDING: ()=>HEADER_HORIZONTAL_PADDING,
+    useThemeColor: ()=>useThemeColor,
     createStyle: ()=>createStyle,
     useThemeStyle: ()=>useThemeStyle
 });
@@ -165,6 +167,10 @@ const typo_typo = {
     }
 };
 const external_react_native_namespaceObject = require("react-native");
+const useThemeColor = ()=>{
+    const colorScheme = (0, external_react_native_namespaceObject.useColorScheme)();
+    return colors["dark" === colorScheme ? "dark" : "light"];
+};
 const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{
     const colorScheme = (0, external_react_native_namespaceObject.useColorScheme)();
@@ -243,22 +249,52 @@ const Header_styles = external_react_native_namespaceObject.StyleSheet.create({
         paddingHorizontal: 16
     }
 });
+function RadioButton({ children, checked, onCheckChange }) {
+    const styles = useThemeStyle(themedStyles);
+    const themeColor = useThemeColor();
+    return /*#__PURE__*/ external_react_default().createElement(external_react_native_namespaceObject.TouchableOpacity, {
+        style: [
+            styles.block,
+            {
+                backgroundColor: checked ? themeColor.action.primary : themeColor.action.disabled
+            }
+        ],
+        activeOpacity: 0.3,
+        accessibilityRole: "radio",
+        accessibilityState: {
+            selected: checked
+        },
+        onPress: ()=>onCheckChange(!checked)
+    }, children);
+}
+const themedStyles = createStyle(({ themeColor })=>({
+        block: {
+            padding: 32,
+            borderRadius: 16,
+            borderWidth: 1,
+            borderColor: themeColor.border.default
+        }
+    }));
 exports.HEADER_HEIGHT = __webpack_exports__.HEADER_HEIGHT;
 exports.HEADER_HORIZONTAL_PADDING = __webpack_exports__.HEADER_HORIZONTAL_PADDING;
 exports.Header = __webpack_exports__.Header;
+exports.RadioButton = __webpack_exports__.RadioButton;
 exports.colors = __webpack_exports__.colors;
 exports.createStyle = __webpack_exports__.createStyle;
 exports.typo = __webpack_exports__.typo;
 exports.useHeaderStyle = __webpack_exports__.useHeaderStyle;
+exports.useThemeColor = __webpack_exports__.useThemeColor;
 exports.useThemeStyle = __webpack_exports__.useThemeStyle;
 for(var __webpack_i__ in __webpack_exports__)if (-1 === [
     "HEADER_HEIGHT",
     "HEADER_HORIZONTAL_PADDING",
     "Header",
+    "RadioButton",
     "colors",
     "createStyle",
     "typo",
     "useHeaderStyle",
+    "useThemeColor",
     "useThemeStyle"
 ].indexOf(__webpack_i__)) exports[__webpack_i__] = __webpack_exports__[__webpack_i__];
 Object.defineProperty(exports, '__esModule', {
