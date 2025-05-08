@@ -249,7 +249,7 @@ const Header_styles = external_react_native_namespaceObject.StyleSheet.create({
         paddingHorizontal: 16
     }
 });
-function RadioButton({ children, checked, onCheckChange }) {
+function RadioButton({ children, checked, onCheckChange, style }) {
     const styles = useThemeStyle(themedStyles);
     const themeColor = useThemeColor();
     return /*#__PURE__*/ external_react_default().createElement(external_react_native_namespaceObject.TouchableOpacity, {
@@ -257,7 +257,8 @@ function RadioButton({ children, checked, onCheckChange }) {
             styles.block,
             {
                 backgroundColor: checked ? themeColor.action.primary : themeColor.action.disabled
-            }
+            },
+            style
         ],
         activeOpacity: 0.3,
         accessibilityRole: "radio",

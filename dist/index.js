@@ -202,7 +202,7 @@ const Header_styles = __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.StyleShe
         paddingHorizontal: 16
     }
 });
-function RadioButton({ children, checked, onCheckChange }) {
+function RadioButton({ children, checked, onCheckChange, style }) {
     const styles = useThemeStyle(themedStyles);
     const themeColor = useThemeColor();
     return /*#__PURE__*/ __WEBPACK_EXTERNAL_MODULE_react__["default"].createElement(__WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.TouchableOpacity, {
@@ -210,7 +210,8 @@ function RadioButton({ children, checked, onCheckChange }) {
             styles.block,
             {
                 backgroundColor: checked ? themeColor.action.primary : themeColor.action.disabled
-            }
+            },
+            style
         ],
         activeOpacity: 0.3,
         accessibilityRole: "radio",

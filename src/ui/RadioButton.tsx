@@ -1,18 +1,20 @@
 import React from "react";
 import { createStyle, useThemeStyle } from "./createStyle";
 import { useThemeColor } from "../design";
-import { TouchableOpacity } from "react-native";
+import { StyleProp, TouchableOpacity, ViewStyle } from "react-native";
 
 interface RadioButtonProps {
   children: React.ReactNode;
   checked: boolean;
   onCheckChange: (checked: boolean) => void;
+  style?: StyleProp<ViewStyle>;
 }
 
 export function RadioButton({
   children,
   checked,
   onCheckChange,
+  style,
 }: RadioButtonProps) {
   const styles = useThemeStyle(themedStyles);
 
@@ -27,6 +29,7 @@ export function RadioButton({
             ? themeColor.action.primary
             : themeColor.action.disabled,
         },
+        style,
       ]}
       activeOpacity={0.3}
       accessibilityRole="radio"
