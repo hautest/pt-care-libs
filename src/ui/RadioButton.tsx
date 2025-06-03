@@ -1,7 +1,7 @@
 import React from "react";
 import { createStyle, useThemeStyle } from "./createStyle";
-import { useThemeColor } from "../design";
 import { StyleProp, TouchableOpacity, ViewStyle } from "react-native";
+import { useThemeColor } from "../design";
 
 interface RadioButtonProps {
   children: React.ReactNode;

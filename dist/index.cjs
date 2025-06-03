@@ -42,6 +42,7 @@ __webpack_require__.d(__webpack_exports__, {
     useThemeStyle: ()=>useThemeStyle,
     createMMKVSchema: ()=>createMMKVSchema,
     useHeaderStyle: ()=>useHeaderStyle,
+    useIsDarkMode: ()=>useIsDarkMode,
     HEADER_HORIZONTAL_PADDING: ()=>HEADER_HORIZONTAL_PADDING,
     useThemeColor: ()=>useThemeColor,
     createStyle: ()=>createStyle,
@@ -170,10 +171,6 @@ const typo_typo = {
     }
 };
 const external_react_native_namespaceObject = require("react-native");
-const useThemeColor = ()=>{
-    const colorScheme = (0, external_react_native_namespaceObject.useColorScheme)();
-    return colors["dark" === colorScheme ? "dark" : "light"];
-};
 const external_zod_namespaceObject = require("zod");
 const external_react_native_mmkv_namespaceObject = require("react-native-mmkv");
 function isStringIncludeQuotesOrDoubleQuotes(value) {
@@ -228,6 +225,16 @@ const themeMMKV = createMMKVSchema({
         "system"
     ])
 });
+const useIsDarkMode = ()=>{
+    const [colorScheme] = themeMMKV.useMMKV();
+    const colorSchemeFromSystem = (0, external_react_native_namespaceObject.useColorScheme)();
+    const isDark = "system" === colorScheme ? "dark" === colorSchemeFromSystem : "dark" === colorScheme;
+    return isDark;
+};
+const useThemeColor = ()=>{
+    const isDark = useIsDarkMode();
+    return isDark ? colors.dark : colors.light;
+};
 const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{
     const [colorScheme] = themeMMKV.useMMKV();
@@ -345,6 +352,7 @@ exports.mmkvStorage = __webpack_exports__.mmkvStorage;
 exports.themeMMKV = __webpack_exports__.themeMMKV;
 exports.typo = __webpack_exports__.typo;
 exports.useHeaderStyle = __webpack_exports__.useHeaderStyle;
+exports.useIsDarkMode = __webpack_exports__.useIsDarkMode;
 exports.useThemeColor = __webpack_exports__.useThemeColor;
 exports.useThemeStyle = __webpack_exports__.useThemeStyle;
 for(var __webpack_i__ in __webpack_exports__)if (-1 === [
@@ -359,6 +367,7 @@ for(var __webpack_i__ in __webpack_exports__)if (-1 === [
     "themeMMKV",
     "typo",
     "useHeaderStyle",
+    "useIsDarkMode",
     "useThemeColor",
     "useThemeStyle"
 ].indexOf(__webpack_i__)) exports[__webpack_i__] = __webpack_exports__[__webpack_i__];

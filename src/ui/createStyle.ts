@@ -1,6 +1,5 @@
 import { StyleSheet, useColorScheme } from "react-native";
 import { colors, typo } from "../design";
-import { useMMKVString } from "react-native-mmkv";
 import { themeMMKV } from "../utils";
 
 export type Colors = (typeof colors)["dark"] | (typeof colors)["light"];

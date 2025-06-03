@@ -124,10 +124,6 @@ const typo_typo = {
         wider: 0.8
     }
 };
-const useThemeColor = ()=>{
-    const colorScheme = (0, __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.useColorScheme)();
-    return colors["dark" === colorScheme ? "dark" : "light"];
-};
 function isStringIncludeQuotesOrDoubleQuotes(value) {
     return value.startsWith('"') && value.endsWith('"') || value.startsWith("'") && value.endsWith("'");
 }
@@ -180,6 +176,16 @@ const themeMMKV = createMMKVSchema({
         "system"
     ])
 });
+const useIsDarkMode = ()=>{
+    const [colorScheme] = themeMMKV.useMMKV();
+    const colorSchemeFromSystem = (0, __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.useColorScheme)();
+    const isDark = "system" === colorScheme ? "dark" === colorSchemeFromSystem : "dark" === colorScheme;
+    return isDark;
+};
+const useThemeColor = ()=>{
+    const isDark = useIsDarkMode();
+    return isDark ? colors.dark : colors.light;
+};
 const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{
     const [colorScheme] = themeMMKV.useMMKV();
@@ -284,4 +290,4 @@ const themedStyles = createStyle(({ themeColor })=>({
             borderColor: themeColor.border.default
         }
     }));
-export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, Header, RadioButton, colors, createMMKVSchema, createStyle, mmkvStorage, themeMMKV, typo_typo as typo, useHeaderStyle, useThemeColor, useThemeStyle };
+export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, Header, RadioButton, colors, createMMKVSchema, createStyle, mmkvStorage, themeMMKV, typo_typo as typo, useHeaderStyle, useIsDarkMode, useThemeColor, useThemeStyle };
