@@ -3,7 +3,5 @@ import { createMMKVSchema } from "./mmkv";
 
 export const themeMMKV = createMMKVSchema({
   key: "theme",
-  value: z.object({
-    theme: z.enum(["light", "dark", "system"]),
-  }),
+  value: z.enum(["light", "dark", "system"]),
 });

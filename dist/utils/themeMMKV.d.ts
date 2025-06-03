@@ -1,10 +1,6 @@
 export declare const themeMMKV: {
-    setValue: (newValue: {
-        theme: "light" | "dark" | "system";
-    }) => void;
-    getValue: () => {
-        theme: "light" | "dark" | "system";
-    } | null;
+    setValue: (newValue: "light" | "dark" | "system") => void;
+    getValue: () => "light" | "dark" | "system" | null;
     key: string;
     resetValue: () => void;
 };

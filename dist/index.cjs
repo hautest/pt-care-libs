@@ -199,13 +199,11 @@ function createMMKVSchema({ key, value: valueType }) {
 }
 const themeMMKV = createMMKVSchema({
     key: "theme",
-    value: external_zod_namespaceObject.z.object({
-        theme: external_zod_namespaceObject.z["enum"]([
-            "light",
-            "dark",
-            "system"
-        ])
-    })
+    value: external_zod_namespaceObject.z["enum"]([
+        "light",
+        "dark",
+        "system"
+    ])
 });
 const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{

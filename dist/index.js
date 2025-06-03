@@ -151,13 +151,11 @@ function createMMKVSchema({ key, value: valueType }) {
 }
 const themeMMKV = createMMKVSchema({
     key: "theme",
-    value: __WEBPACK_EXTERNAL_MODULE_zod__.z.object({
-        theme: __WEBPACK_EXTERNAL_MODULE_zod__.z["enum"]([
-            "light",
-            "dark",
-            "system"
-        ])
-    })
+    value: __WEBPACK_EXTERNAL_MODULE_zod__.z["enum"]([
+        "light",
+        "dark",
+        "system"
+    ])
 });
 const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{
