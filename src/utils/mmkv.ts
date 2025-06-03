@@ -1,6 +1,17 @@
 import z from "zod";
 import { MMKV, useMMKVString } from "react-native-mmkv";
 
+function isStringIncludeQuotesOrDoubleQuotes(value: string) {
+  return (
+    (value.startsWith('"') && value.endsWith('"')) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  );
+}
+
+function removeQuotesOrDoubleQuotes(value: string) {
+  return value.replace(/^"|"$/g, "").replace(/^'|'$/g, "");
+}
+
 export const mmkvStorage = new MMKV();
 
 interface MMKVSchemaParams<T extends z.ZodType> {
@@ -14,10 +25,7 @@ export function createMMKVSchema<T extends z.ZodType>({
 }: MMKVSchemaParams<T>) {
   const setValue = (newValue: z.infer<T>) => {
     if (valueType.safeParse(newValue).success) {
-      mmkvStorage.set(
-        key,
-        typeof newValue === "string" ? newValue : JSON.stringify(newValue)
-      );
+      mmkvStorage.set(key, JSON.stringify(newValue));
     } else {
       throw new Error(`${key}에 대한 값이 유효하지 않습니다.`);
     }
@@ -26,8 +34,12 @@ export function createMMKVSchema<T extends z.ZodType>({
   const getValue = (): z.infer<T> | null => {
     const value = mmkvStorage.getString(key);
     if (value) {
+      const jsonParsedValue = JSON.parse(value);
+
       return valueType.parse(
-        typeof value === "string" ? value : JSON.parse(value)
+        isStringIncludeQuotesOrDoubleQuotes(jsonParsedValue)
+          ? removeQuotesOrDoubleQuotes(jsonParsedValue)
+          : JSON.parse(jsonParsedValue)
       );
     }
     return null;
@@ -38,7 +50,7 @@ export function createMMKVSchema<T extends z.ZodType>({
   };
 
   const useMMKV = () => {
-    const [value, _setValue] = useMMKVString(key);
+    const [_value, _setValue] = useMMKVString(key);
 
     const setValue = (newValue: z.infer<T>) => {
       if (valueType.safeParse(newValue).success) {
@@ -47,6 +59,14 @@ export function createMMKVSchema<T extends z.ZodType>({
         throw new Error(`${key}에 대한 값이 유효하지 않습니다.`);
       }
     };
+
+    const jsonParsedValue = JSON.parse(_value || "");
+
+    const value = valueType.parse(
+      isStringIncludeQuotesOrDoubleQuotes(jsonParsedValue)
+        ? removeQuotesOrDoubleQuotes(jsonParsedValue)
+        : JSON.parse(jsonParsedValue)
+    );
 
     return [value, setValue] as [z.infer<T>, (newValue: z.infer<T>) => void];
   };

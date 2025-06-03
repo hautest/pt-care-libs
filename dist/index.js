@@ -128,26 +128,37 @@ const useThemeColor = ()=>{
     const colorScheme = (0, __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.useColorScheme)();
     return colors["dark" === colorScheme ? "dark" : "light"];
 };
+function isStringIncludeQuotesOrDoubleQuotes(value) {
+    return value.startsWith('"') && value.endsWith('"') || value.startsWith("'") && value.endsWith("'");
+}
+function removeQuotesOrDoubleQuotes(value) {
+    return value.replace(/^"|"$/g, "").replace(/^'|'$/g, "");
+}
 const mmkvStorage = new __WEBPACK_EXTERNAL_MODULE_react_native_mmkv_01893ffb__.MMKV();
 function createMMKVSchema({ key, value: valueType }) {
     const setValue = (newValue)=>{
-        if (valueType.safeParse(newValue).success) mmkvStorage.set(key, "string" == typeof newValue ? newValue : JSON.stringify(newValue));
+        if (valueType.safeParse(newValue).success) mmkvStorage.set(key, JSON.stringify(newValue));
         else throw new Error(`${key}에 대한 값이 유효하지 않습니다.`);
     };
     const getValue = ()=>{
         const value = mmkvStorage.getString(key);
-        if (value) return valueType.parse("string" == typeof value ? value : JSON.parse(value));
+        if (value) {
+            const jsonParsedValue = JSON.parse(value);
+            return valueType.parse(isStringIncludeQuotesOrDoubleQuotes(jsonParsedValue) ? removeQuotesOrDoubleQuotes(jsonParsedValue) : JSON.parse(jsonParsedValue));
+        }
         return null;
     };
     const resetValue = ()=>{
         mmkvStorage.delete(key);
     };
     const useMMKV = ()=>{
-        const [value, _setValue] = (0, __WEBPACK_EXTERNAL_MODULE_react_native_mmkv_01893ffb__.useMMKVString)(key);
+        const [_value, _setValue] = (0, __WEBPACK_EXTERNAL_MODULE_react_native_mmkv_01893ffb__.useMMKVString)(key);
         const setValue = (newValue)=>{
             if (valueType.safeParse(newValue).success) _setValue(JSON.stringify(newValue));
             else throw new Error(`${key}에 대한 값이 유효하지 않습니다.`);
         };
+        const jsonParsedValue = JSON.parse(_value || "");
+        const value = valueType.parse(isStringIncludeQuotesOrDoubleQuotes(jsonParsedValue) ? removeQuotesOrDoubleQuotes(jsonParsedValue) : JSON.parse(jsonParsedValue));
         return [
             value,
             setValue
