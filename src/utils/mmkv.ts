@@ -1,5 +1,5 @@
 import z from "zod";
-import { MMKV } from "react-native-mmkv";
+import { MMKV, useMMKVString } from "react-native-mmkv";
 
 export const mmkvStorage = new MMKV();
 
@@ -32,10 +32,25 @@ export function createMMKVSchema<T extends z.ZodType>({
     mmkvStorage.delete(key);
   };
 
+  const useMMKV = () => {
+    const [value, _setValue] = useMMKVString(key);
+
+    const setValue = (newValue: z.infer<T>) => {
+      if (valueType.safeParse(newValue).success) {
+        _setValue(JSON.stringify(newValue));
+      } else {
+        throw new Error(`${key}에 대한 값이 유효하지 않습니다.`);
+      }
+    };
+
+    return [value, setValue] as [z.infer<T>, (newValue: z.infer<T>) => void];
+  };
+
   return {
     setValue,
     getValue,
     key,
     resetValue,
+    useMMKV,
   };
 }

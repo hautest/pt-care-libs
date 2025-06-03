@@ -18,10 +18,10 @@ export const createStyle = <T extends Style>(styleCallback: StyleCallback<T>) =>
 export const useThemeStyle = <T extends Style>(
   styledCallback: StyleCallback<T>
 ) => {
-  const [colorScheme] = useMMKVString(themeMMKV.key);
+  const [colorScheme] = themeMMKV.useMMKV();
   const colorSchemeFromSystem = useColorScheme();
 
-  const isDark = colorScheme === "dark" || colorSchemeFromSystem === "dark";
+  const isDark = colorScheme === "system" ? colorSchemeFromSystem : colorScheme;
 
   return styledCallback({
     themeColor: isDark ? colors["dark"] : colors["light"],

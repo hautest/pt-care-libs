@@ -3,4 +3,5 @@ export declare const themeMMKV: {
     getValue: () => "light" | "dark" | "system" | null;
     key: string;
     resetValue: () => void;
+    useMMKV: () => ["light" | "dark" | "system", (newValue: "light" | "dark" | "system") => void];
 };

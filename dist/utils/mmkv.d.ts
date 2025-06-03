@@ -10,5 +10,6 @@ export declare function createMMKVSchema<T extends z.ZodType>({ key, value: valu
     getValue: () => z.infer<T> | null;
     key: string;
     resetValue: () => void;
+    useMMKV: () => [z.infer<T>, (newValue: z.infer<T>) => void];
 };
 export {};

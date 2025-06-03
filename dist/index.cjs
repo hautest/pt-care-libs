@@ -174,8 +174,8 @@ const useThemeColor = ()=>{
     const colorScheme = (0, external_react_native_namespaceObject.useColorScheme)();
     return colors["dark" === colorScheme ? "dark" : "light"];
 };
-const external_react_native_mmkv_namespaceObject = require("react-native-mmkv");
 const external_zod_namespaceObject = require("zod");
+const external_react_native_mmkv_namespaceObject = require("react-native-mmkv");
 const mmkvStorage = new external_react_native_mmkv_namespaceObject.MMKV();
 function createMMKVSchema({ key, value: valueType }) {
     const setValue = (newValue)=>{
@@ -190,11 +190,23 @@ function createMMKVSchema({ key, value: valueType }) {
     const resetValue = ()=>{
         mmkvStorage.delete(key);
     };
+    const useMMKV = ()=>{
+        const [value, _setValue] = (0, external_react_native_mmkv_namespaceObject.useMMKVString)(key);
+        const setValue = (newValue)=>{
+            if (valueType.safeParse(newValue).success) _setValue(JSON.stringify(newValue));
+            else throw new Error(`${key}에 대한 값이 유효하지 않습니다.`);
+        };
+        return [
+            value,
+            setValue
+        ];
+    };
     return {
         setValue,
         getValue,
         key,
-        resetValue
+        resetValue,
+        useMMKV
     };
 }
 const themeMMKV = createMMKVSchema({
@@ -207,9 +219,9 @@ const themeMMKV = createMMKVSchema({
 });
 const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{
-    const [colorScheme] = (0, external_react_native_mmkv_namespaceObject.useMMKVString)(themeMMKV.key);
+    const [colorScheme] = themeMMKV.useMMKV();
     const colorSchemeFromSystem = (0, external_react_native_namespaceObject.useColorScheme)();
-    const isDark = "dark" === colorScheme || "dark" === colorSchemeFromSystem;
+    const isDark = "system" === colorScheme ? colorSchemeFromSystem : colorScheme;
     return styledCallback({
         themeColor: isDark ? colors.dark : colors.light,
         typo: typo_typo
