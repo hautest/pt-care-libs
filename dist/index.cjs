@@ -33,16 +33,22 @@ var __webpack_require__ = {};
 var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
-    typo: ()=>typo_typo,
+    themeKeyMMKV: ()=>themeKeyMMKV,
     Header: ()=>Header,
-    RadioButton: ()=>RadioButton,
     colors: ()=>colors,
     HEADER_HEIGHT: ()=>HEADER_HEIGHT,
     useHeaderStyle: ()=>useHeaderStyle,
+    getThemeMMKV: ()=>getThemeMMKV,
+    resetThemeMMKV: ()=>resetThemeMMKV,
     HEADER_HORIZONTAL_PADDING: ()=>HEADER_HORIZONTAL_PADDING,
-    useThemeColor: ()=>useThemeColor,
     createStyle: ()=>createStyle,
-    useThemeStyle: ()=>useThemeStyle
+    typo: ()=>typo_typo,
+    RadioButton: ()=>RadioButton,
+    setThemeMMKV: ()=>setThemeMMKV,
+    createMMKVSchema: ()=>createMMKVSchema,
+    useThemeColor: ()=>useThemeColor,
+    useThemeStyle: ()=>useThemeStyle,
+    mmkvStorage: ()=>mmkvStorage
 });
 const colors = {
     basic: {
@@ -171,10 +177,44 @@ const useThemeColor = ()=>{
     const colorScheme = (0, external_react_native_namespaceObject.useColorScheme)();
     return colors["dark" === colorScheme ? "dark" : "light"];
 };
+const external_react_native_mmkv_namespaceObject = require("react-native-mmkv");
+const external_zod_namespaceObject = require("zod");
+const mmkvStorage = new external_react_native_mmkv_namespaceObject.MMKV();
+function createMMKVSchema({ key, value: valueType }) {
+    const setValue = (newValue)=>{
+        if (valueType.safeParse(newValue).success) mmkvStorage.set(key, JSON.stringify(newValue));
+        else throw new Error(`${key}에 대한 값이 유효하지 않습니다.`);
+    };
+    const getValue = ()=>{
+        const value = mmkvStorage.getString(key);
+        if (value) return valueType.parse(JSON.parse(value));
+        return null;
+    };
+    const resetValue = ()=>{
+        mmkvStorage.delete(key);
+    };
+    return {
+        setValue,
+        getValue,
+        key,
+        resetValue
+    };
+}
+const { setValue: setThemeMMKV, getValue: getThemeMMKV, key: themeKeyMMKV, resetValue: resetThemeMMKV } = createMMKVSchema({
+    key: "theme",
+    value: external_zod_namespaceObject.z.object({
+        theme: external_zod_namespaceObject.z["enum"]([
+            "light",
+            "dark",
+            "system"
+        ])
+    })
+});
 const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{
-    const colorScheme = (0, external_react_native_namespaceObject.useColorScheme)();
-    const isDark = "dark" === colorScheme;
+    const [colorScheme] = (0, external_react_native_mmkv_namespaceObject.useMMKVString)(themeKeyMMKV);
+    const colorSchemeFromSystem = (0, external_react_native_namespaceObject.useColorScheme)();
+    const isDark = "dark" === colorScheme || "dark" === colorSchemeFromSystem;
     return styledCallback({
         themeColor: isDark ? colors.dark : colors.light,
         typo: typo_typo
@@ -281,7 +321,13 @@ exports.HEADER_HORIZONTAL_PADDING = __webpack_exports__.HEADER_HORIZONTAL_PADDIN
 exports.Header = __webpack_exports__.Header;
 exports.RadioButton = __webpack_exports__.RadioButton;
 exports.colors = __webpack_exports__.colors;
+exports.createMMKVSchema = __webpack_exports__.createMMKVSchema;
 exports.createStyle = __webpack_exports__.createStyle;
+exports.getThemeMMKV = __webpack_exports__.getThemeMMKV;
+exports.mmkvStorage = __webpack_exports__.mmkvStorage;
+exports.resetThemeMMKV = __webpack_exports__.resetThemeMMKV;
+exports.setThemeMMKV = __webpack_exports__.setThemeMMKV;
+exports.themeKeyMMKV = __webpack_exports__.themeKeyMMKV;
 exports.typo = __webpack_exports__.typo;
 exports.useHeaderStyle = __webpack_exports__.useHeaderStyle;
 exports.useThemeColor = __webpack_exports__.useThemeColor;
@@ -292,7 +338,13 @@ for(var __webpack_i__ in __webpack_exports__)if (-1 === [
     "Header",
     "RadioButton",
     "colors",
+    "createMMKVSchema",
     "createStyle",
+    "getThemeMMKV",
+    "mmkvStorage",
+    "resetThemeMMKV",
+    "setThemeMMKV",
+    "themeKeyMMKV",
     "typo",
     "useHeaderStyle",
     "useThemeColor",

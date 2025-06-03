@@ -1,4 +1,6 @@
 import * as __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__ from "react-native";
+import * as __WEBPACK_EXTERNAL_MODULE_react_native_mmkv_01893ffb__ from "react-native-mmkv";
+import * as __WEBPACK_EXTERNAL_MODULE_zod__ from "zod";
 import * as __WEBPACK_EXTERNAL_MODULE_react__ from "react";
 const colors = {
     basic: {
@@ -126,10 +128,42 @@ const useThemeColor = ()=>{
     const colorScheme = (0, __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.useColorScheme)();
     return colors["dark" === colorScheme ? "dark" : "light"];
 };
+const mmkvStorage = new __WEBPACK_EXTERNAL_MODULE_react_native_mmkv_01893ffb__.MMKV();
+function createMMKVSchema({ key, value: valueType }) {
+    const setValue = (newValue)=>{
+        if (valueType.safeParse(newValue).success) mmkvStorage.set(key, JSON.stringify(newValue));
+        else throw new Error(`${key}에 대한 값이 유효하지 않습니다.`);
+    };
+    const getValue = ()=>{
+        const value = mmkvStorage.getString(key);
+        if (value) return valueType.parse(JSON.parse(value));
+        return null;
+    };
+    const resetValue = ()=>{
+        mmkvStorage.delete(key);
+    };
+    return {
+        setValue,
+        getValue,
+        key,
+        resetValue
+    };
+}
+const { setValue: setThemeMMKV, getValue: getThemeMMKV, key: themeKeyMMKV, resetValue: resetThemeMMKV } = createMMKVSchema({
+    key: "theme",
+    value: __WEBPACK_EXTERNAL_MODULE_zod__.z.object({
+        theme: __WEBPACK_EXTERNAL_MODULE_zod__.z["enum"]([
+            "light",
+            "dark",
+            "system"
+        ])
+    })
+});
 const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{
-    const colorScheme = (0, __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.useColorScheme)();
-    const isDark = "dark" === colorScheme;
+    const [colorScheme] = (0, __WEBPACK_EXTERNAL_MODULE_react_native_mmkv_01893ffb__.useMMKVString)(themeKeyMMKV);
+    const colorSchemeFromSystem = (0, __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.useColorScheme)();
+    const isDark = "dark" === colorScheme || "dark" === colorSchemeFromSystem;
     return styledCallback({
         themeColor: isDark ? colors.dark : colors.light,
         typo: typo_typo
@@ -229,4 +263,4 @@ const themedStyles = createStyle(({ themeColor })=>({
             borderColor: themeColor.border.default
         }
     }));
-export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, Header, RadioButton, colors, createStyle, typo_typo as typo, useHeaderStyle, useThemeColor, useThemeStyle };
+export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, Header, RadioButton, colors, createMMKVSchema, createStyle, getThemeMMKV, mmkvStorage, resetThemeMMKV, setThemeMMKV, themeKeyMMKV, typo_typo as typo, useHeaderStyle, useThemeColor, useThemeStyle };
