@@ -14,7 +14,10 @@ export function createMMKVSchema<T extends z.ZodType>({
 }: MMKVSchemaParams<T>) {
   const setValue = (newValue: z.infer<T>) => {
     if (valueType.safeParse(newValue).success) {
-      mmkvStorage.set(key, JSON.stringify(newValue));
+      mmkvStorage.set(
+        key,
+        typeof newValue === "string" ? newValue : JSON.stringify(newValue)
+      );
     } else {
       throw new Error(`${key}에 대한 값이 유효하지 않습니다.`);
     }
@@ -23,7 +26,9 @@ export function createMMKVSchema<T extends z.ZodType>({
   const getValue = (): z.infer<T> | null => {
     const value = mmkvStorage.getString(key);
     if (value) {
-      return valueType.parse(JSON.parse(value));
+      return valueType.parse(
+        typeof value === "string" ? value : JSON.parse(value)
+      );
     }
     return null;
   };
