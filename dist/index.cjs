@@ -232,7 +232,7 @@ const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{
     const [colorScheme] = themeMMKV.useMMKV();
     const colorSchemeFromSystem = (0, external_react_native_namespaceObject.useColorScheme)();
-    const isDark = "system" === colorScheme ? colorSchemeFromSystem : colorScheme;
+    const isDark = "system" === colorScheme ? "dark" === colorSchemeFromSystem : "dark" === colorScheme;
     return styledCallback({
         themeColor: isDark ? colors.dark : colors.light,
         typo: typo_typo

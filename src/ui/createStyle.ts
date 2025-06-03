@@ -21,7 +21,10 @@ export const useThemeStyle = <T extends Style>(
   const [colorScheme] = themeMMKV.useMMKV();
   const colorSchemeFromSystem = useColorScheme();
 
-  const isDark = colorScheme === "system" ? colorSchemeFromSystem : colorScheme;
+  const isDark =
+    colorScheme === "system"
+      ? colorSchemeFromSystem === "dark"
+      : colorScheme === "dark";
 
   return styledCallback({
     themeColor: isDark ? colors["dark"] : colors["light"],
