@@ -33,21 +33,18 @@ var __webpack_require__ = {};
 var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
-    themeKeyMMKV: ()=>themeKeyMMKV,
+    themeMMKV: ()=>themeMMKV,
+    typo: ()=>typo_typo,
     Header: ()=>Header,
+    RadioButton: ()=>RadioButton,
     colors: ()=>colors,
     HEADER_HEIGHT: ()=>HEADER_HEIGHT,
-    useHeaderStyle: ()=>useHeaderStyle,
-    getThemeMMKV: ()=>getThemeMMKV,
-    resetThemeMMKV: ()=>resetThemeMMKV,
-    HEADER_HORIZONTAL_PADDING: ()=>HEADER_HORIZONTAL_PADDING,
-    createStyle: ()=>createStyle,
-    typo: ()=>typo_typo,
-    RadioButton: ()=>RadioButton,
-    setThemeMMKV: ()=>setThemeMMKV,
-    createMMKVSchema: ()=>createMMKVSchema,
-    useThemeColor: ()=>useThemeColor,
     useThemeStyle: ()=>useThemeStyle,
+    createMMKVSchema: ()=>createMMKVSchema,
+    useHeaderStyle: ()=>useHeaderStyle,
+    HEADER_HORIZONTAL_PADDING: ()=>HEADER_HORIZONTAL_PADDING,
+    useThemeColor: ()=>useThemeColor,
+    createStyle: ()=>createStyle,
     mmkvStorage: ()=>mmkvStorage
 });
 const colors = {
@@ -200,7 +197,7 @@ function createMMKVSchema({ key, value: valueType }) {
         resetValue
     };
 }
-const { setValue: setThemeMMKV, getValue: getThemeMMKV, key: themeKeyMMKV, resetValue: resetThemeMMKV } = createMMKVSchema({
+const themeMMKV = createMMKVSchema({
     key: "theme",
     value: external_zod_namespaceObject.z.object({
         theme: external_zod_namespaceObject.z["enum"]([
@@ -212,7 +209,7 @@ const { setValue: setThemeMMKV, getValue: getThemeMMKV, key: themeKeyMMKV, reset
 });
 const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{
-    const [colorScheme] = (0, external_react_native_mmkv_namespaceObject.useMMKVString)(themeKeyMMKV);
+    const [colorScheme] = (0, external_react_native_mmkv_namespaceObject.useMMKVString)(themeMMKV.key);
     const colorSchemeFromSystem = (0, external_react_native_namespaceObject.useColorScheme)();
     const isDark = "dark" === colorScheme || "dark" === colorSchemeFromSystem;
     return styledCallback({
@@ -323,11 +320,8 @@ exports.RadioButton = __webpack_exports__.RadioButton;
 exports.colors = __webpack_exports__.colors;
 exports.createMMKVSchema = __webpack_exports__.createMMKVSchema;
 exports.createStyle = __webpack_exports__.createStyle;
-exports.getThemeMMKV = __webpack_exports__.getThemeMMKV;
 exports.mmkvStorage = __webpack_exports__.mmkvStorage;
-exports.resetThemeMMKV = __webpack_exports__.resetThemeMMKV;
-exports.setThemeMMKV = __webpack_exports__.setThemeMMKV;
-exports.themeKeyMMKV = __webpack_exports__.themeKeyMMKV;
+exports.themeMMKV = __webpack_exports__.themeMMKV;
 exports.typo = __webpack_exports__.typo;
 exports.useHeaderStyle = __webpack_exports__.useHeaderStyle;
 exports.useThemeColor = __webpack_exports__.useThemeColor;
@@ -340,11 +334,8 @@ for(var __webpack_i__ in __webpack_exports__)if (-1 === [
     "colors",
     "createMMKVSchema",
     "createStyle",
-    "getThemeMMKV",
     "mmkvStorage",
-    "resetThemeMMKV",
-    "setThemeMMKV",
-    "themeKeyMMKV",
+    "themeMMKV",
     "typo",
     "useHeaderStyle",
     "useThemeColor",

@@ -149,7 +149,7 @@ function createMMKVSchema({ key, value: valueType }) {
         resetValue
     };
 }
-const { setValue: setThemeMMKV, getValue: getThemeMMKV, key: themeKeyMMKV, resetValue: resetThemeMMKV } = createMMKVSchema({
+const themeMMKV = createMMKVSchema({
     key: "theme",
     value: __WEBPACK_EXTERNAL_MODULE_zod__.z.object({
         theme: __WEBPACK_EXTERNAL_MODULE_zod__.z["enum"]([
@@ -161,7 +161,7 @@ const { setValue: setThemeMMKV, getValue: getThemeMMKV, key: themeKeyMMKV, reset
 });
 const createStyle = (styleCallback)=>styleCallback;
 const useThemeStyle = (styledCallback)=>{
-    const [colorScheme] = (0, __WEBPACK_EXTERNAL_MODULE_react_native_mmkv_01893ffb__.useMMKVString)(themeKeyMMKV);
+    const [colorScheme] = (0, __WEBPACK_EXTERNAL_MODULE_react_native_mmkv_01893ffb__.useMMKVString)(themeMMKV.key);
     const colorSchemeFromSystem = (0, __WEBPACK_EXTERNAL_MODULE_react_native_4af9217e__.useColorScheme)();
     const isDark = "dark" === colorScheme || "dark" === colorSchemeFromSystem;
     return styledCallback({
@@ -263,4 +263,4 @@ const themedStyles = createStyle(({ themeColor })=>({
             borderColor: themeColor.border.default
         }
     }));
-export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, Header, RadioButton, colors, createMMKVSchema, createStyle, getThemeMMKV, mmkvStorage, resetThemeMMKV, setThemeMMKV, themeKeyMMKV, typo_typo as typo, useHeaderStyle, useThemeColor, useThemeStyle };
+export { HEADER_HEIGHT, HEADER_HORIZONTAL_PADDING, Header, RadioButton, colors, createMMKVSchema, createStyle, mmkvStorage, themeMMKV, typo_typo as typo, useHeaderStyle, useThemeColor, useThemeStyle };

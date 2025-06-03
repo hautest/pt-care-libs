@@ -1,7 +1,7 @@
 import { StyleSheet, useColorScheme } from "react-native";
 import { colors, typo } from "../design";
 import { useMMKVString } from "react-native-mmkv";
-import { themeKeyMMKV } from "../utils";
+import { themeMMKV } from "../utils";
 
 export type Colors = (typeof colors)["dark"] | (typeof colors)["light"];
 export type Typo = typeof typo;
@@ -18,7 +18,7 @@ export const createStyle = <T extends Style>(styleCallback: StyleCallback<T>) =>
 export const useThemeStyle = <T extends Style>(
   styledCallback: StyleCallback<T>
 ) => {
-  const [colorScheme] = useMMKVString(themeKeyMMKV);
+  const [colorScheme] = useMMKVString(themeMMKV.key);
   const colorSchemeFromSystem = useColorScheme();
 
   const isDark = colorScheme === "dark" || colorSchemeFromSystem === "dark";
