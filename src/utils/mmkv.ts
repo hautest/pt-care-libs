@@ -33,16 +33,17 @@ export function createMMKVSchema<T extends z.ZodType>({
 
   const getValue = (): z.infer<T> | null => {
     const value = mmkvStorage.getString(key);
-    if (value) {
-      const jsonParsedValue = JSON.parse(value);
-
-      return valueType.parse(
-        isStringIncludeQuotesOrDoubleQuotes(jsonParsedValue)
-          ? removeQuotesOrDoubleQuotes(jsonParsedValue)
-          : jsonParsedValue
-      );
+    if (!value) {
+      return null;
     }
-    return null;
+
+    const jsonParsedValue = JSON.parse(value);
+
+    return valueType.parse(
+      isStringIncludeQuotesOrDoubleQuotes(jsonParsedValue)
+        ? removeQuotesOrDoubleQuotes(jsonParsedValue)
+        : jsonParsedValue
+    );
   };
 
   const resetValue = () => {
@@ -60,7 +61,14 @@ export function createMMKVSchema<T extends z.ZodType>({
       }
     };
 
-    const jsonParsedValue = JSON.parse(_value || "");
+    if (!_value) {
+      return [null, setValue] as [
+        z.infer<T> | null,
+        (newValue: z.infer<T>) => void
+      ];
+    }
+
+    const jsonParsedValue = JSON.parse(_value);
 
     const value = valueType.parse(
       isStringIncludeQuotesOrDoubleQuotes(jsonParsedValue)

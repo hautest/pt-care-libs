@@ -138,11 +138,9 @@ function createMMKVSchema({ key, value: valueType }) {
     };
     const getValue = ()=>{
         const value = mmkvStorage.getString(key);
-        if (value) {
-            const jsonParsedValue = JSON.parse(value);
-            return valueType.parse(isStringIncludeQuotesOrDoubleQuotes(jsonParsedValue) ? removeQuotesOrDoubleQuotes(jsonParsedValue) : jsonParsedValue);
-        }
-        return null;
+        if (!value) return null;
+        const jsonParsedValue = JSON.parse(value);
+        return valueType.parse(isStringIncludeQuotesOrDoubleQuotes(jsonParsedValue) ? removeQuotesOrDoubleQuotes(jsonParsedValue) : jsonParsedValue);
     };
     const resetValue = ()=>{
         mmkvStorage.delete(key);
@@ -153,7 +151,11 @@ function createMMKVSchema({ key, value: valueType }) {
             if (valueType.safeParse(newValue).success) _setValue(JSON.stringify(newValue));
             else throw new Error(`${key}에 대한 값이 유효하지 않습니다.`);
         };
-        const jsonParsedValue = JSON.parse(_value || "");
+        if (!_value) return [
+            null,
+            setValue
+        ];
+        const jsonParsedValue = JSON.parse(_value);
         const value = valueType.parse(isStringIncludeQuotesOrDoubleQuotes(jsonParsedValue) ? removeQuotesOrDoubleQuotes(jsonParsedValue) : jsonParsedValue);
         return [
             value,
